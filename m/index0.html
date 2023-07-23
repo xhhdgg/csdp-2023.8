@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html class="ui-mobile"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="https://www.ittc.ku.edu/~bluo/CSDP/m/">--><base href=".">
+
+  
+  <title>CSDP 2022</title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="./src/jquery.mobile-1.4.5.min.css">
+  <link rel="shortcut icon" href="./src/favicon.ico" type="image/x-icon">
+  <script src="./src/jq-min.js.下载"></script>
+  <script src="./src/jqm.js.下载"></script>
+
+
+  <script type="text/javascript">
+
+    $(function () {
+      $('#nav').enhanceWithin().panel();
+
+      var page = $('body').find('div[data-role="page"]:not(.details)');
+
+      for (let i = 0; i < page.length - 1; i++) {
+        $(page[i]).bind('swipeleft', function (e) {
+          e.preventDefault();
+          $.mobile.changePage('#' + page[i + 1].id, { transition: 'slide' }, true)
+        })
+        //console.log(page[i].id+" => "+page[i+1].id);
+      }
+      for (let i = 1; i < page.length; i++) {
+        $(page[i]).bind('swiperight', function () {
+          $.mobile.changePage('#' + page[i - 1].id, { transition: 'slide', reverse: true }, true)
+        })
+        //console.log(page[i-1].id+" <= "+page[i].id);
+      }
+    });
+
+    /* Pre-data */
+    var speaker_inf = [];
+    speaker_inf['XiaoFeng Wang'] = {
+      "bio": "<strong>XiaoFeng Wang</strong>，Dr. XiaoFeng Wang is a James H. Rudy Professor of Computer Science and Engineering at Indiana University and an IEEE Fellow. At IU, he is also a Co-Director of Center for Security and Privacy in Informatics, Computing and Engineering, and the Director of the Master of Science in Secure Computing (MSSC) program. Dr. Wang serves as the Director and leading PI of Center for Distributed Confidential Computing (CDCC), a Frontiers Project in Secure and Trustworthy Computing funded by the National Science Foundation. The project is a multi-institution effort, involving faculty from IU (Lead), CMU, Duke, OSU, Penn State, Purdue, Spelman, UIUC and Yale. The center aims at laying the technological foundations for practical data-in-use protection based on Trusted Execution Environments (TEE) over today and tomorrow’s cloud and edge platforms, which is critical to the advance of AI and data science. Dr. Wang is the Chair of ACM Special Interest Group on Security, Audit and Control (SIGSAC), and was also TPC Co-Chair of the ACM Conference on Computer and Communications Security (CCS), the ACM’s flagship security and privacy conference, during 2018 and 2019. In the past 20 years, Dr. Wang has been working on a broad range of research topics in systems security and data privacy. He is considered to be one of the most prominent systems security and privacy researchers, a top author according to online statistics such as CSRankings, System Security Circus (Eurecom), and Top Authors, the Systems Cirus (EPFL). Dr. Wang is known for his high-impact research on security analysis of real-world systems and biomedical data privacy. Particularly, the projects he led on side-channel analysis and mitigation, payment and single-sign-on API integrations, Android and iOS security and IoT protection have changed the way the industry built computing systems. Also he is a pioneer researcher on human genome privacy and a co-founder of the iDASH Genome Privacy Competition that contributes to reducing the gap between security and cryptography research and real-world demands for biomedical data sharing and computing protection. More recently, he is actively working on TEE-based Data-in-Use protection for supporting AI, Trustworthy AI, and application of AI technologies (such as NLP and deep learning) to protect computing systems, LTE/5G networks in particular. For his work, Dr. Wang has received numerous awards, including Award for Outstanding Research in Privacy Enhancing Technologies (the PET Award), Best Practical Paper Award at the 32nd IEEE Symposium on Security and Privacy (IEEE S&P Oakland), and two Distinguished Paper Awards at the 26th Network and Distributed System Security Symposium (NDSS). His work has been extensively reported by public media, including CNN, MSNBC, Forbes, Slashdot, Nature News, etc. Dr. Wang’s research has been supported by NSF, NIH, ARO, IARPA, and other federal funding agencies and industry. Since joining IU in 2004, Dr. Wang has been serving as PI on research projects totaling nearly $23 million (by 2022).",
+      "tit": "Confidential Computing: Challenges Today and Opportunities Tomorrow",
+      "abs": "The rampage of incessant cyber attacks have caused the disclosure of billions of users’ private data, shaking the Internet to its core. In response, various data privacy laws and regulations have emerged, forcing the industry to change their practice and bringing the demand for large-scale secure computing to the spotlight. Such a demand, however, cannot be met by the state-of-the-art cryptographic techniques, even with decades of effort, due to the overheads (speed, bandwidth consumption) they incur. To narrow the gap, recent years have seen rapid progress in hardware based trusted execution environments (TEE), such as Intel SGX, AMD SEV and ARM TrustZone, which enable efficient computation on encrypted data within a secure enclave established by a trusted processor.  In this talk, I will present our research on understanding and addressing the security challenges in this new secure computing paradigm and enhancing its design to achieve scalability, for the purpose of supporting accelerated machine learning.  Further I will present the big questions that need to be answered in the area and introduce our genome privacy competition as a synergic activity that helps move the science in this area forward."
+    };
+
+    speaker_inf['Yier Jin'] = {
+      "bio": "<strong>Yier Jin</strong>，Dr. Yier Jin is the courtesy professor at the University of Florida. He is also the co-chair of the IEEE Hardware Security and Trust Technical Committee (HSTTC). His research focuses on the areas of embedded systems and Internet of Thing (IoT) design and security, trusted hardware intellectual property (IP) cores and hardware-software co-design for modern computing systems. He is also interested in artificial intelligence (AI) security and its applications in hardware domain. He received various Best Paper Awards from top-tier conference including Design Automation Conference (DAC) 2015, IEEE Symposium on Hardware-Oriented Security and Trust (HOST) 2017, and IEEE Security and Trust (Oakland) 2022. He is the IEEE CEDA Distinguished Lecturer and a senior member of IEEE.",
+      "tit": "Invisible Finger: Practical Electromagnetic Interference Attack on Touchscreen-based Electronic Devices",
+      "abs": "Touchscreen-based electronic devices such as smart phones and smart tablets are widely used in our daily life. While the security of electronic devices have been heavily investigated recently, the resilience of touchscreens against various attacks has yet to be thoroughly investigated. In this talk, I will show that touchscreen-based electronic devices are vulnerable to intentional electromagnetic interference (IEMI) attacks in a systematic way and how to conduct this attack in a practical way. I will show how to calculate both the minimum amount of electric field and signal frequency required to induce touchscreen ghost touches. I will further analyze our IEMI attack on real touchscreens with different magnitudes, frequencies, duration, and multitouch patterns. This new attack works directly on the touchscreen circuit regardless of the touchscreen scanning mechanism or operating system. I will conclude the talk with potential solutions for touchscreen protection against IEMI, or similar, attacks."
+    };
+
+
+    speaker_inf['欧文浩'] = {
+      "bio": "<strong>欧文浩</strong>，Dr Man Ho Allen Au is an associate professor at the Department of Computer Science of the University of Hong Kong (HKU) where he leads the cyber security & post-quantum cryptography Laboratory. Before joining HKU, he was an associate professor in the Department of Computing of the Hong Kong Polytechnic University. Dr Au’s research interests include information security, applied cryptography, blockchain technology, and their applications. He has published over 190 refereed papers in top journals and conferences, including CRYPTO, ASIACRYPT, CCS, NDSS, S&P, SIGMOD, SOSP, IEEE TIFS, TDSC, etc. He is a recipient of the 2009 PET runner-up award for outstanding research in privacy-enhancing technologies. Dr Au’s research has generated significant social and economic impact. His digital signature technology has been used in the Hyperledger Fabric project, the most popular blockchain infrastructure supported by big industry players like IBM, Intel, and SAP. He is a general co-chair of ACM ASIACCS 2021 and an expert member of the ISO/IEC JTC 1/SC 27 working group 2 - Cryptography and security mechanisms.",
+      "tit": "Cryptography in Blockchains and Their Applications",
+      "abs": "Conceptualized 12 years ago as a core component of Bitcoin, blockchain has gained a vast amount of interest. Informally speaking, a blockchain is a distributed, shared, and immutable ledger that maintains a growing list of ordered records. It became extremely popular among the industries in the last few years. Many companies are exploring applications of blockchain beyond cryptocurrencies. In this talk, the speaker will introduce blockchain and highlight some of the latest development in this area. In particular, we will discuss the role of cryptography in blockchains, and why it is crucial. We will also discuss attacks that may circumvent present cryptographic protection mechanisms. Topics covered include threshold cryptosystems, anonymous credentials, ring signatures, zero-knowledge proofs, and post-quantum cryptography. Finally, we will conclude the talk with challenges related to the adoption of blockchain technologies and insights developed from our experience."
+    };
+
+
+    speaker_inf['张熙'] = {
+      "bio": "<strong>张熙</strong>，张熙，北京邮电大学副教授，博士生导师，网络空间安全学院副院长，可信分布式计算与服务教育部重点实验室副主任，国家级青年人才。2006年和2012年分别于哈尔滨工业大学和清华大学计算机系获得学士和博士学位。2015年至2016年于美国伊利诺伊大学芝加哥分校访问。主要从事数据挖掘、机器学习与安全的交叉研究，包括社交媒体分析，可信人工智能和隐私计算等。研究成果发表在IEEE TKDE, KDD, IJCAI, AAAI, ICDM, CIKM等重要期刊和会议上。担任中国网络空间安全协会常务理事单位代表，中国中文信息学会青工委委员，曾获中国电子学会科技进步一等奖和中央网信办表彰。",
+      "tit": "多模态虚假信息检测技术研究",
+      "abs": "本次报告主要介绍在多模态虚假信息检测方面的一些工作。考虑到社交媒体上虚假信息传播过程中丰富的多模态信息提供了更多的线索，基于多模态信息融合的社交媒体虚假信息检测技术有助于在挖掘丰富语义特征的基础上做到高效判别，然而传统深度模型由于存在鲁棒性和可解释性的不足，我们进一步引入知识图谱、模型可解释性和鲁棒性的增强技术，提升虚假信息检测模型的可信性，使其更好的适应真实复杂对抗的场景。"
+    };
+
+
+    speaker_inf['罗夏朴'] = {
+      "bio": "<strong>罗夏朴</strong>，Xiapu Luo is an associate professor in the Department of Computing, The Hong Kong Polytechnic University. His research focuses on Mobile/IoT security and privacy, Blockchain/smart contracts, Network/Web Security and Privacy, Software Engineering and Internet Measurement with papers published in top security/software engineering/system/networking conferences and journals. His research led to night best/distinguished paper awards, including ACM SIGSOFT Distinguished Paper Award in ISSTA'22, ACM SIGSOFT Distinguished Paper Award in ICSE'21, Best Paper Award in INFOCOM'18, Best Research Paper Award in ISSRE'16, etc. and several awards from the industry. He regularly serves in the program committee of top security conferences and is an editor of IEEE/ACM Transactions on Networking.",
+      "tit": "Revisiting Private Information Leakage via Intent and Traffic",
+      "abs": "It is well known private information in Android apps can be directly obtained by abusing the Intent mechanism and be inferred by analyzing their network traffic. In this talk, we will report two new observations. First,  we uncover that there is a previously unknown attack surface in Android framework that can be exploited by unauthorized apps to violate the access control. Second, we found that it is possible to identify method-level fine-grained user action of Android apps by combining the analysis of apps and their network traffic."
+    };
+
+
+    speaker_inf['陆荣幸'] = {
+      "bio": "<strong>陆荣幸</strong>，Rongxing Lu is a Mastercard IoT Research Chair, a University Research Scholar, an associate professor at the Faculty of Computer Science (FCS), University of New Brunswick (UNB), Canada. Before that, he worked as an assistant professor at the School of Electrical and Electronic Engineering, Nanyang Technological University (NTU), Singapore from April 2013 to August 2016. Rongxing Lu worked as a Postdoctoral Fellow at the University of Waterloo from May 2012 to April 2013. He was awarded the most prestigious “Governor General’s Gold Medal”, when he received his PhD degree from the Department of Electrical & Computer Engineering, University of Waterloo, Canada, in 2012; and won the 8th IEEE Communications Society (ComSoc) Asia Pacific (AP) Outstanding Young Researcher Award, in 2013. Dr. Lu is an IEEE Fellow. His research interests include applied cryptography, privacy enhancing technologies, and IoT-Big Data security and privacy. He has published extensively in his areas of expertise. Currently, Dr. Lu serves as the Chair of IEEE ComSoc CIS-TC (Communications and Information Security Technical Committee), and the founding Co-chair of IEEE TEMS Blockchain and Distributed Ledgers Technologies Technical Committee (BDLT-TC). Dr. Lu is the Winner of 2016-17 Excellence in Teaching Award, FCS, UNB. ",
+      "tit": "Efficient and Privacy-Preserving Similarity Query with Access Control in eHealthcare",
+      "abs": "Similarity queries, giving a way to disease diagnosis based on similar patients, have wide applications in eHealthcare and are essentially demanded to be processed under fine-grained access policies due to the high sensitivity of healthcare data. One efficient and flexible way to implement such queries is to outsource healthcare data and the corresponding query services to a powerful cloud. Nevertheless, considering data privacy, healthcare data are usually outsourced in an encrypted form and required to be accessed in a privacy-preserving way. In the past years, many schemes have been proposed for privacy-preserving similarity queries. However, none of them is applicable to achieve data access control and access pattern privacy preservation. Aiming at this challenge, we propose an efficient and access pattern privacy-preserving similarity range query scheme with access control (named EPSim-AC)."
+    };
+
+    speaker_inf['王伟'] = {
+      "bio": "<strong>王伟</strong>，王伟，北京交通大学教授，博士生导师，信息安全系主任，智能交通数据安全与隐私保护技术北京市重点实验室副主任，区块链研究中心主任。中国计算机学会（CCF）杰出会员；CCF区块链专业委员会常务委员。北京市网络法学研究会常务理事。长期致力于网络与系统安全、数据安全及隐私计算理论与技术研究。主持国家自然科学基金重点项目，国家重点研发计划课题、子课题等项目20余项。提出了融合多源异构动态数据的网络和系统异常行为分析与检测框架、模型和方法，并构建了可信任的隐私计算理论与技术。发表相关学术论文100余篇；主持或参编行业或国家标准8项。连续入选爱思唯尔（Elsevier）网络空间安全领域 “中国高被引学者” 。担任期刊Computers & Security编委，期刊Frontiers of Computer Science 的青年AE和《网络空间安全》期刊编委。获省部级科技进步二等奖2项。",
+      "tit": "车路协同隐私计算",
+      "abs": "车路协同是智慧交通重要的应用场景，可提高通行效率，保障交通安全，是我国实现“交通强国”的必由之路。然而，车路协同需要车、路各主体提供大量的数据，但这些数据本身包含很多用户隐私，可信的协同计算成为难题。将报告可信任的隐私增强计算方法，可在保护用户隐私的前提下，对数据中蕴含的知识进行协同和计算，实现智慧交通中的车路协同。"
+    };
+
+
+    speaker_inf['关振宇'] = {
+      "bio": "<strong>关振宇</strong>，北京航空航天大学",
+      "tit": "同态计算高效编译与硬件实现技术研究To be determined.",
+      "abs": "To be determined."
+    };
+
+    speaker_inf['郑昉昱'] = {
+      "bio": "<strong>郑昉昱</strong>，博士，助理研究员，中科院信工所引进优秀青年人才，长期从事密码应用、密码测评技术、网络与系统安全等领域技术研究工作，作为第一/通信作者在TIFS、ACSAC、ESORICS、IPDPS等国内外知名会议/期刊累计发表20余篇，编写《密码软件实现与密钥安全》《商用密码应用与安全性评估》两本专著，主持多项国家重点研发计划子课题、国家自然科学基金、CCF-腾讯犀牛鸟基金，获得党政密码科技进步三等奖（排名第三），主持/参与密码国家/行业标准制定10余项，包括GB/T 37902《密码模块安全要求》、GB/T 39786《信息系统密码应用基本要求》等。 ",
+      "tit": "Heterogeneous-PAKE: Bridging the Gap between PAKE Protocols and Their Real-World Deployment",
+      "abs": "PAKE protocol has been considered a suitable substitute for the prevailing hash-based authentication which is vulnerable to various attacks. However, vendors are discouraged by both its prohibitively computational overheads as well as integrating costs, leading to its limited use since being proposed. In this talk, I will present Heterogeneous-PAKE, an entire PAKE stack with high-performance and compatibility for both client-side and server-side for Web systems. Heterogeneous-PAKE harvests high throughput on the server-side which supports over 1,650k concurrent user per second. Meanwhile, on most testing platforms, the latency is well controlled within user-acceptable bounds, which is less than 3x that of a traditional authentication approach based on Bcrypt. The empirical results demonstrate that the Heterogeneous-PAKE is a very economical (with only a GPU-ready server) and convenient (with an easy-to-integrate software stack without user participation or database rebuilding) solution for upgrading existing systems with high-performance PAKE services.<p></p>"
+    };
+
+
+    function toSpeaker(name) {
+      let detail = speaker_inf[name];
+      $('#speaker_name').text(name);
+      $('#avatar').attr('alt', name);
+      $('#avatar').attr('src', './src/speakers/' + name + '.jpg')
+      $('#bio').html(detail.bio);
+      $('#title').html(detail.tit);
+      $('#abstract').html(detail.abs);
+      $.mobile.changePage('#speaker', { transition: 'slide' }, true);
+    }
+  </script>
+
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    legend img {
+      width: 80px;
+    }
+
+    #nav.ui-panel {
+      width: 15em;
+    }
+
+    #nav.ui-panel-closed {
+      width: 0;
+    }
+
+    .ui-panel-position-left.ui-panel-display-reveal {
+      left: 0;
+    }
+
+    .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open,
+    .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+      left: 15em;
+      right: -15em;
+    }
+
+    .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal {
+      left: 0;
+      right: 0;
+      -webkit-transform: translate3d(15em, 0, 0);
+      -moz-transform: translate3d(15em, 0, 0);
+      transform: translate3d(15em, 0, 0);
+    }
+
+    /* Combined listview collapsible menu. */
+    /* Unset negative margin bottom on the listviews. */
+    #nav .ui-panel-inner>.ui-listview {
+      margin-bottom: 0;
+    }
+
+    /* Unset top and bottom margin on collapsible set. */
+    #nav .ui-collapsible-set {
+      margin: 0;
+    }
+
+    /* The first collapsible contains the collapsible set. Make it fit exactly in the collapsible content. */
+    #nav .ui-panel-inner>.ui-collapsible>.ui-collapsible-content {
+      padding-top: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    /* Remove border top if a collapsible comes after a listview. */
+    #nav .ui-panel-inner>.ui-collapsible>.ui-collapsible-heading .ui-btn,
+    #nav .ui-collapsible.ui-first-child .ui-collapsible-heading .ui-btn {
+      border-top: none;
+    }
+
+    /* Give the first collapsible heading the same padding, i.e. same height, as the list items. */
+    #nav .ui-collapsible-heading .ui-btn-inner {
+      padding: .7em 40px .7em 15px;
+    }
+
+    /* Give the other collapsible headings the same padding and font-size as the list divider. */
+    #nav .ui-collapsible-set .ui-collapsible-heading .ui-btn-inner {
+      padding: .5em 40px .5em 15px;
+      font-size: 14px;
+    }
+
+    /* Styling of the close button in both panels. */
+    .ui-panel-inner>.ui-listview .ui-first-child {
+      background: #eee;
+    }
+
+    /* Reveal menu shadow on top of the list items */
+    .ui-panel-display-reveal {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+
+    .ui-panel-content-wrap-position-left {
+      -webkit-box-shadow: -5px 0px 5px rgba(0, 0, 0, .15);
+      -moz-box-shadow: -5px 0px 5px rgba(0, 0, 0, .15);
+      box-shadow: -5px 0px 5px rgba(0, 0, 0, .15);
+    }
+
+    .ui-panel.ui-panel-open {
+      position: fixed;
+    }
+
+    .ui-panel-inner {
+      position: absolute;
+      top: 1px;
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #committee ul li p {
+      white-space: normal
+    }
+
+    #gallary img {
+      width: 100%;
+    }
+
+    #registration table th {
+      border: solid 1px white;
+      height: 30px;
+      line-height: 33px;
+      background-color: rgb(218, 231, 210);
+      text-align: center;
+    }
+
+    #registration table td {
+      vertical-align: middle;
+    }
+
+    #registration table ._col1 {
+      background-color: rgb(215, 227, 238);
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .nav-btn {
+      width: 18px !important;
+      height: 18px !important;
+      padding: 9px;
+      border-radius: 9px !important;
+    }
+
+    .nav-btn::after {
+      background-size: 75% !important;
+      margin-top: -10px;
+      margin-left: 2px;
+    }
+  </style>
+</head>
+
+<body class="ui-mobile-viewport ui-overlay-a vsc-initialized" style="">
+  <div data-role="page" id="home" data-url="home" tabindex="0" class="ui-page ui-page-theme-a ui-page-header-fixed ui-page-active" style="padding-top: 45px;">
+    <!--Page home-->
+
+    <div data-role="header" data-theme="b" data-position="fixed" data-fullscreen="false" role="banner" class="ui-header ui-bar-b ui-header-fixed slidedown ui-fixed-hidden">
+      <h1 class="ui-title" role="heading" aria-level="1">CSDP 2022</h1>
+      <a href="#nav" data-role="button" class="ui-btn-right nav-btn ui-link ui-btn ui-icon-bullets ui-btn-icon-left ui-shadow ui-corner-all" data-icon="bullets" role="button"></a>
+    </div>
+
+    <div class="ui-panel-wrapper"><div role="main" class="ui-content">
+      <fieldset class="ui-corner-all" style="border:solid 1px #e7e7e7;padding:0.5em">
+        <legend><img src="../src/logo2d.png" alt="CSDP 2022"></legend>
+        <b>4th International Workshop on Cyber Security and Data Privacy</b><br>
+        <small>
+          <b>Aug. 15 - Aug. 16 2022<br>
+            Virtual, China</b>
+        </small>
+        <p>With the rapid development of modern information technology, it is more and more convenient for people to obtain and publish information. However, at the same time, personal information is collected, stored and distributed on a large scale, which leads to the increasingly severe situation of cyber security and privacy protection. To tackle the emerging challenges in security and privacy, we bring together researchers and practitioners, who come from different organizations and backgrounds, to share their accomplishments and experiences.</p>
+        <p>The International Workshop on Cybersecurity and Data Privacy (CSDP) aims to provide a forum to discuss the problems, the challenges, the solutions, the insights, and the vision of security and privacy in the cyberspace.</p>
+      </fieldset>
+      <div data-role="collapsible" data-collapsed="false">
+        <h1>IMPORTANT DATES</h1>
+        <p><b>Conference:</b></p>
+        <p>&nbsp;&nbsp;08/15/2021</p>
+        <p>&nbsp;&nbsp;08/16/2021</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="false">
+        <h1>CONFERENCES</h1>
+        <p><b>Past Conferences:</b></p>
+		<p><a href="https://www.ittc.ku.edu/~bluo/CSDP/m/index.html" title="CSDP2021" class="ui-link">CSDP 2021</a></p>
+        <p><a href="https://www.ittc.ku.edu/~bluo/CSDP/CSDP2020/m/index.html" title="CSDP2020" class="ui-link">CSDP 2020</a></p>
+        <p><a href="https://www.ittc.ku.edu/~bluo/CSDP/CSDP2019/m/index.html" title="CSDP2019" class="ui-link">CSDP 2019</a></p>
+      </div></div>
+    </div><div data-role="footer" data-theme="b" role="contentinfo" class="ui-footer ui-bar-b">
+      <center>
+        <small>© Copyright 2022 CSDP - All rights reserved.<br>
+          Supported by <a href="https://scss.bupt.edu.cn/" target="_blank" class="ui-link">主办单位：北京邮电大学网络空间安全安全学院，
+            北京邮电大学可信分布式计算与服务教育部重点实验室，
+            移动互联网安全基础理论与关键技术学科创新引智基地<br>
+            协办单位;中国科学技术大学网络空间安全学院,
+            武汉大学网络空间安全学院,
+            浙江工商大学计算机与信息工程学院</a></small>
+      </center>
+    </div></div>
+    
+  </div>
+  <!--Page home-->
+
+  <div data-role="page" id="committee" data-url="committee">
+    <!--Page committee-->
+    <div data-role="header" data-theme="b" data-position="fixed" data-fullscreen="false">
+      <h1>Committee</h1>
+      <a href="#nav" class="ui-btn-right nav-btn" data-icon="bullets"></a>
+    </div>
+
+    <div role="main" class="ui-content">
+      <form class="ui-filterable">
+        <input id="filter_1" data-type="search">
+      </form>
+      <div data-role="collapsible" data-collapsed="false">
+        <h2>Co-chairs</h2>
+        <ul data-role="listview" data-filter="true" data-input="#filter_1">
+          <li>
+            <p><b>Jingqiang Lin</b>,
+              University of Science and Technology of China
+            </p>
+          </li>
+          <li>
+            <p><b>Bo Luo</b>,
+              the University of Kansas, USA
+            </p>
+          </li>
+		  <li>
+            <p><b>Ruisheng Shi</b>,
+              Beijing University of Posts and Telecommunications
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div data-role="collapsible"  data-collapsed="false">
+        <h2>Organization Committee</h2>
+        <ul data-role="listview" data-filter="true" data-input="#filter_1">
+          <li>
+            <p><b>Jun Shao</b>,
+              Zhejiang Gongshang University, China
+            </p>
+          </li>
+          <li>
+            <p><b>Juan Wang</b>,
+              Wuhan University, China
+            </p>
+          </li>
+          <li>
+            <p><b>Shengzhi Zhang</b>,
+              Boston University Metropolitan College , USA
+            </p>
+          </li>
+          <li>
+            <p><b>Lina Lan</b>,
+              Beijing University of Posts and Telecommunications
+            </p>
+          </li>
+          <li>
+            <p><b>Xi Zhang</b>,
+              Beijing University of Posts and Telecommunications
+            </p>
+          </li>
+          <li>
+            <p><b>Jinqiao Shi</b>,
+              Beijing University of Posts and Telecommunications
+            </p>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div data-role="footer" data-theme="b">
+      <center>
+        <small>© Copyright 2022 CSDP - All rights reserved.<br>
+          Supported by <a href="https://scss.bupt.edu.cn/" target="_blank" class="ui-link">主办单位：北京邮电大学网络空间安全安全学院，
+            北京邮电大学可信分布式计算与服务教育部重点实验室，
+            移动互联网安全基础理论与关键技术学科创新引智基地<br>
+            协办单位;中国科学技术大学网络空间安全学院,
+            武汉大学网络空间安全学院,
+            浙江工商大学计算机与信息工程学院</a></small>
+      </center>
+    </div>
+  </div>
+  <!--Page committee-->
+
+  <div data-role="page" id="speakers" data-url="speakers">
+    <!--Page speakers-->
+    <div data-role="header" data-theme="b" data-position="fixed" data-fullscreen="false">
+      <h1>Speakers</h1>
+      <a href="#nav" class="ui-btn-right nav-btn" data-icon="bullets"></a>
+    </div>
+
+    <div role="main" class="ui-content">
+      <form class="ui-filterable">
+        <input id="filter_2" data-type="search">
+      </form>
+      <ul id="speaker-list" data-role="listview" data-filter="true" data-input="#filter_2">
+        <li><a href="javascript:toSpeaker(&#39;XiaoFeng Wang&#39;)">XiaoFeng Wang</a></li>
+        <li><a href="javascript:toSpeaker(&#39;Yier Jin&#39;)">Yier Jin</a></li>
+        <li><a href="javascript:toSpeaker(&#39;欧文浩&#39;)">欧文浩</a></li>
+        <li><a href="javascript:toSpeaker(&#39;张熙&#39;)">张熙</a></li>
+        <li><a href="javascript:toSpeaker(&#39;罗夏朴&#39;)">罗夏朴</a></li>
+        <li><a href="javascript:toSpeaker(&#39;陆荣幸&#39;)">陆荣幸</a></li>
+        <li><a href="javascript:toSpeaker(&#39;王伟&#39;)">王伟</a></li>
+        <li><a href="javascript:toSpeaker(&#39;关振宇&#39;)">关振宇</a></li>
+        <li><a href="javascript:toSpeaker(&#39;郑昉昱&#39;)">郑昉昱</a></li>
+      </ul>
+    </div>
+    <div data-role="footer" data-theme="b">
+      <center>
+        <small>© Copyright 2022 CSDP - All rights reserved.<br>
+          Supported by <a href="https://scss.bupt.edu.cn/" target="_blank" class="ui-link">主办单位：北京邮电大学网络空间安全安全学院，
+            北京邮电大学可信分布式计算与服务教育部重点实验室，
+            移动互联网安全基础理论与关键技术学科创新引智基地<br>
+            协办单位;中国科学技术大学网络空间安全学院,
+            武汉大学网络空间安全学院,
+            浙江工商大学计算机与信息工程学院</a></small>
+      </center>
+    </div>
+  </div>
+  <!--Page speakers-->
+
+  <div data-role="page" id="speaker" class="details" data-url="speaker">
+    <!--Page speaker-->
+    <div data-role="header" data-theme="b" data-position="fixed" data-fullscreen="false">
+      <a href="#" data-icon="back" data-role="button" data-rel="back" class="nav-btn"></a>
+      <h1 id="speaker_name"></h1>
+    </div>
+
+    <div role="main" class="ui-content">
+      <fieldset class="ui-corner-all" style="border:solid 1px #e7e7e7;padding:0.5em">
+        <legend><img id="avatar" alt="CSDP 2022"></legend>
+        <span id="bio"></span>
+      </fieldset>
+      <table data-role="table" data-mode="columntoggle:none" id="speech">
+        <thead>
+          <tr>
+            <th>
+              <center>Speech</center>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Title:</b>
+              <span id="title"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Abstract:</b>
+              <span id="abstract"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div data-role="footer" data-theme="b">
+      <center>
+        <small>© Copyright 2022 CSDP - All rights reserved.<br>
+          Supported by <a href="https://scss.bupt.edu.cn/" target="_blank" class="ui-link">主办单位：北京邮电大学网络空间安全安全学院，
+            北京邮电大学可信分布式计算与服务教育部重点实验室，
+            移动互联网安全基础理论与关键技术学科创新引智基地<br>
+            协办单位;中国科学技术大学网络空间安全学院,
+            武汉大学网络空间安全学院,
+            浙江工商大学计算机与信息工程学院</a></small>
+      </center>
+    </div>
+  </div>
+  <!--Page speaker-->
+
+  <div data-role="page" id="program" data-url="program">
+    <!--Page hotel-->
+    <div data-role="header" data-theme="b" data-position="fixed" data-fullscreen="false">
+      <h1>program</h1>
+      <a href="#nav" class="ui-btn-right nav-btn" data-icon="bullets"></a>
+    </div>
+
+    <div role="main" class="ui-content">
+      <p>4th International Workshop on Cyber Security and Data Privacy 2022 will take place virtually from August 15 to
+        August 16. </p>
+      <img style="display: inline-block; width: 100%; max-width: 100%; height: auto;" src="./src/schedule.jpeg" id="schedule" alt="schedule 1">
+    </div>
+    <div data-role="footer" data-theme="b">
+      <center>
+        <small>© Copyright 2022 CSDP - All rights reserved.<br>
+          Supported by <a href="https://scss.bupt.edu.cn/" target="_blank" class="ui-link">主办单位：北京邮电大学网络空间安全安全学院，
+            北京邮电大学可信分布式计算与服务教育部重点实验室，
+            移动互联网安全基础理论与关键技术学科创新引智基地<br>
+            协办单位;中国科学技术大学网络空间安全学院,
+            武汉大学网络空间安全学院,
+            浙江工商大学计算机与信息工程学院</a></small>
+      </center>
+    </div>
+  </div>
+  <!--Page hotel-->
+
+  <div data-role="page" id="registration" data-url="registration">
+    <!--Page registration-->
+    <div data-role="header" data-theme="b" data-position="fixed" data-fullscreen="false">
+      <h1>Registration</h1>
+      <a href="#nav" class="ui-btn-right nav-btn" data-icon="bullets"></a>
+    </div>
+
+    <div role="main" class="ui-content">
+      <p>Due to the continuing impact and future unpredictability of the COVID-19 pandemic,
+        CSDP 2022 will be held virtually using <a href="https://meeting.tencent.com/">Tecent
+          Meeting</a></p>
+      <table data-role="table" data-mode="columntoggle:none" class="ui-corner-all" style="border:solid 1px #e7e7e7;padding:0.5em">
+        <tbody><tr>
+          <th>
+            08/15/2022 &nbsp; &amp; &nbsp; 08/16/2022
+          </th>
+        </tr>
+        <tr>
+          <td>
+            会议主题：4th International Workshop on Cyber Security and Data Privacy<br>
+            <br>
+            会议时间：2022/08/15 08:00-2022/08/16 08:00 (GMT+08:00) 中国标准时间 - 北京<br>
+            <br>
+            点击链接入会，或添加至会议列表：<br>
+            <a href="To be determined.">To be determined.</a><br>
+            <br>
+            会议 ID：To be determined.<br>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+
+    <div data-role="footer" data-theme="b">
+      <center>
+        <small>© Copyright 2022 CSDP - All rights reserved.<br>
+          Supported by <a href="https://scss.bupt.edu.cn/" target="_blank" class="ui-link">主办单位：北京邮电大学网络空间安全安全学院，
+            北京邮电大学可信分布式计算与服务教育部重点实验室，
+            移动互联网安全基础理论与关键技术学科创新引智基地<br>
+            协办单位;中国科学技术大学网络空间安全学院,
+            武汉大学网络空间安全学院,
+            浙江工商大学计算机与信息工程学院</a></small>
+      </center>
+    </div>
+  </div>
+  <!--Page registration-->
+
+  <div data-role="panel" id="nav" data-position="left" data-display="push" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-push ui-panel-closed ui-body-a ui-panel-animate">
+    <!--nav-->
+    <!--div class="ui-panel-inner"-->
+    <div class="ui-panel-inner"><h1>Navigation</h1><ul data-role="listview" class="ui-listview">
+      <li data-icon="false" class="ui-first-child"><a href="#home" data-rel="close" class="ui-btn">Home</a></li>
+      <li data-icon="false"><a href="#committee" data-rel="close" class="ui-btn">Committee</a></li>
+      <li data-icon="false"><a href="#speakers" data-rel="close" class="ui-btn">Speakers</a></li>
+      <li data-icon="false"><a href="#program" data-rel="close" class="ui-btn">Program</a></li>
+      <li data-icon="false" class="ui-last-child"><a href="#registration" data-rel="close" class="ui-btn">Registration</a></li>
+    </ul></div>
+    
+    <!--/div-->
+  </div>
+  <!--nav-->
+
+
+
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div><div class="ui-panel-dismiss"></div></body></html>
